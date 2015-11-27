@@ -120,6 +120,10 @@ MongoClient.connect(config.db, function(err, db) {
     app.set("views", __dirname + "/app/views");
     app.use(express.static(__dirname + "/app/assets"));
 
+    app.get('/evil', function (req, res, next) {
+        res.sendFile(__dirname + '/evil.js');
+    });
+
     // Application routes
     routes(app, db);
 
