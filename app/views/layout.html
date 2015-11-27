@@ -45,10 +45,9 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <!--  side nav -->
                 <ul class="nav navbar-nav side-nav">
-                    {% if user.isAdmin %}
-                    <li><a id="benefits-menu-link" href="/benefits"><i class="fa fa-calendar"></i> Benefits</a>
+                    <li><a id="benefits-menu-link" href="/benefits" {% if !user.isAdmin %} style="display:none;"{% endif %}><i class="fa fa-calendar"></i> Benefits</a>
                     </li>
-                    {% else %}
+
                     <li><a id="dashboard-menu-link" href="/"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li><a id="contributions-menu-link" href="/contributions"><i class="fa fa-bar-chart-o"></i> Contributions</a>
@@ -56,10 +55,12 @@
                     <li><a id="allocations-menu-link" href="/allocations/{{userId}}"><i class="fa fa-table"></i> Allocations</a>
                     </li>
                     <li><a id="profile-menu-link" href="/profile"><i class="fa fa-user"></i> Profile</a>
-                    </li>
-                    <li><a id="learn-menu-link" target="_blank" href="/learn?url=https://www.khanacademy.org/economics-finance-domain/core-finance/investment-vehicles-tutorial/ira-401ks/v/traditional-iras"><i class="fa fa-edit"></i> Learning Resources</a>
+                    {% if 0 %}
+                    <li><a id="search-menu-link" href="/search"><i class="fa fa-user"></i> Search</a>
                     </li>
                     {% endif %}
+                    <li><a id="learn-menu-link" target="_blank" href="/learn?url=https://www.khanacademy.org/economics-finance-domain/core-finance/investment-vehicles-tutorial/ira-401ks/v/traditional-iras"><i class="fa fa-edit"></i> Learning Resources</a>
+                    </li>
                     <li><a id="logout-menu-link" href="/logout"><i class="fa fa-power-off"></i> Logout</a>
                     </li>
                 </ul>

@@ -3,6 +3,7 @@ var ProfileHandler = require("./profile");
 var BenefitsHandler = require("./benefits");
 var ContributionsHandler = require("./contributions");
 var AllocationsHandler = require("./allocations");
+var SearchHandler = require('./search');
 var ErrorHandler = require("./error").errorHandler;
 
 var exports = function(app, db) {
@@ -14,6 +15,7 @@ var exports = function(app, db) {
     var benefitsHandler = new BenefitsHandler(db);
     var contributionsHandler = new ContributionsHandler(db);
     var allocationsHandler = new AllocationsHandler(db);
+    var searchHandler = new SearchHandler(db);
 
     // Middleware to check if a user is logged in
     var isLoggedIn = sessionHandler.isLoggedInMiddleware;
@@ -53,6 +55,8 @@ var exports = function(app, db) {
      app.get("/benefits", isLoggedIn, isAdmin, benefitsHandler.displayBenefits);
      app.post("/benefits", isLoggedIn, isAdmin, benefitsHandler.updateBenefits);
      */
+
+    app.get("/search", isLoggedIn, searchHandler.search);
 
     // Allocations Page
     app.get("/allocations/:userId", isLoggedIn, allocationsHandler.displayAllocations);
